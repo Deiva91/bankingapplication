@@ -8,8 +8,7 @@ public class Customer {
   private String password;
   private int account_id;
 
-  public Customer(int id,String name,String username,String password,int account_id)
-  {
+  public Customer(int id, String name, String username, String password, int account_id) {
     setId(id);
     setName(name);
     setUsername(username);
@@ -17,7 +16,6 @@ public class Customer {
     setId(account_id);
 
   }
-
 
   public int getId() {
     return this.id;
@@ -58,6 +56,4 @@ public class Customer {
   public void setAccount_id(int account_id) {
     this.account_id = account_id;
   }
-
-
 }
