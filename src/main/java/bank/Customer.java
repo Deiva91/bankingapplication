@@ -13,7 +13,7 @@ public class Customer {
     setName(name);
     setUsername(username);
     setPassword(password);
-    setId(account_id);
+    setAccount_id(account_id);
 
   }
 

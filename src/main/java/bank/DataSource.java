@@ -40,12 +40,32 @@ public class DataSource {
       e.printStackTrace();
     }
     return customer;
+  }
 
+  public static Account getAccount(int accountId) {
+    String sql = "select * from accounts where id=?";
+    Account account = null;
+    try (Connection connection = connect();
+        PreparedStatement statement = connection.prepareStatement(sql)) {
+      statement.setInt(1, accountId);
+      try (ResultSet resultset = statement.executeQuery()) {
+        account = new Account(
+            resultset.getInt("id"),
+            resultset.getString("type"),
+            resultset.getInt("balance"));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return account;
   }
 
   public static void main(String[] arg) {
     Customer customer = getCustomer("twest8o@friendfeed.com");
     System.out.println(customer.getName());
+    System.out.println(customer.getAccount_id());
+    Account account = getAccount(customer.getAccount_id());
+    System.out.println(account.getBalance());
   }
 
 }
