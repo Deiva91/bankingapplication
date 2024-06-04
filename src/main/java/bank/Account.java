@@ -6,13 +6,11 @@ public class Account {
   private String type;
   private double balance;
 
-  public Account(int id,String type,double balance)
-  {
+  public Account(int id, String type, double balance) {
     setId(id);
     setType(type);
     setBalance(balance);
   }
-
 
   public int getId() {
     return this.id;
@@ -38,5 +36,12 @@ public class Account {
     this.balance = balance;
   }
 
+  public void deposit(double amount) {
+
+  }
+
+  public void withdraw(double amount) {
+
+  }
 
 }
