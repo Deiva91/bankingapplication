@@ -60,12 +60,26 @@ public class DataSource {
     return account;
   }
 
-  public static void main(String[] arg) {
-    Customer customer = getCustomer("twest8o@friendfeed.com");
-    System.out.println(customer.getName());
-    System.out.println(customer.getAccount_id());
-    Account account = getAccount(customer.getAccount_id());
-    System.out.println(account.getBalance());
+  public static void updateAccountBalance(int accountid, double balance) {
+    String sql = "update accounts set balance=? where id=?";
+    try (Connection connection = connect();
+        PreparedStatement statement = connection.prepareStatement(sql)) {
+      statement.setInt(2, accountid);
+      statement.setDouble(1, balance);
+      statement.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
+
+  /*
+   * public static void main(String[] arg) {
+   * Customer customer = getCustomer("twest8o@friendfeed.com");
+   * System.out.println(customer.getName());
+   * System.out.println(customer.getAccount_id());
+   * Account account = getAccount(customer.getAccount_id());
+   * System.out.println(account.getBalance());
+   * }
+   */
 
 }

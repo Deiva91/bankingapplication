@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import javax.security.auth.login.LoginException;
 
+import Exception.amountException;
+
 public class Menu {
 
   private Scanner scanner;
@@ -49,30 +51,40 @@ public class Menu {
       System.out.println("3.Check Balance");
       System.out.println("4.Exit");
       System.out.println("============================");
-    }
-    selection = scanner.nextInt();
-    double amount = 0;
-    switch (selection) {
-      case 1:
-        System.out.println("Enter the amount to deposit:");
-        amount = scanner.nextDouble();
-        account.deposit(amount);
-        break;
-      case 2:
-        System.out.println("Enter the amount to withdraw:");
-        amount = scanner.nextDouble();
-        account.withdraw(amount);
-        break;
-      case 3:
-        System.out.println("Balance:" + account.getBalance());
-        break;
-      case 4:
-        Authenticator.logout(customer);
-        System.out.println("Thanks for banking with us!");
-        break;
-      default:
-        System.out.println("Invalid option.Try Again!");
-        break;
+
+      selection = scanner.nextInt();
+      double amount = 0;
+      switch (selection) {
+        case 1:
+          System.out.println("Enter the amount to deposit:");
+          amount = scanner.nextDouble();
+          try {
+            account.deposit(amount);
+          } catch (amountException e) {
+            System.out.println("Error" + e.getMessage());
+            System.out.println("Try again");
+          }
+          break;
+        case 2:
+          System.out.println("Enter the amount to withdraw:");
+          amount = scanner.nextDouble();
+          try{account.withdraw(amount);}
+          catch(amountException e){
+            System.out.println("Error:"+e.getMessage());
+            System.out.println("Try Again!");
+          }
+          break;
+        case 3:
+          System.out.println("Balance:" + account.getBalance());
+          break;
+        case 4:
+          Authenticator.logout(customer);
+          System.out.println("Thanks for banking with us!");
+          break;
+        default:
+          System.out.println("Invalid option.Try Again!");
+          break;
+      }
     }
   }
 
