@@ -1,9 +1,9 @@
-package Exception;
+package bank.exception;
 
 public class amountException extends Exception {
 
   public amountException(String message) {
-    super.getMessage();
+    super(message);
   }
 
 }

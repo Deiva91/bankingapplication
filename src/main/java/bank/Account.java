@@ -1,6 +1,6 @@
 package bank;
 
-import Exception.amountException;
+import bank.exception.amountException;
 
 public class Account {
 
